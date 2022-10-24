@@ -7,7 +7,7 @@ function Article({ route }) {
   console.log(route.params?.id);
   const id = route.params?.id;
   const article = useSelector(state =>
-    state.Cars.entities[id]
+    state.Cars.entities[id-1]
   );
 
   return (
