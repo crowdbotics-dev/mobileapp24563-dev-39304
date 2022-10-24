@@ -7,3 +7,4 @@ class Car(models.Model):
     year = models.IntegerField()
     price = models.IntegerField()
     description = models.TextField()
+    picture = models.CharField(max_length=256,null=True,blank=True,)
