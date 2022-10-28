@@ -1,30 +1,28 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "./api";
-
-export const articleRead = createAsyncThunk(
-  "articles/articleRead",
-  async ({ id }) => {
-    const response = await api.articleRead(id);
-    return response.data;
+export const articleRead = createAsyncThunk("articles/articleRead", async ({
+  id
+}) => {
+  const response = await api.articleRead(id);
+  return response.data;
+});
+export const articleList = createAsyncThunk("articles/articleList", async () => {
+  const response = await api.articleList();
+  return response.data;
+});
+const initialState = {
+  articles: {},
+  api: {
+    loading: "idle",
+    error: null
   }
-);
-
-export const articleList = createAsyncThunk(
-  "articles/articleList",
-  async () => {
-    const response = await api.articleList();
-    return response.data;
-  }
-);
-
-const initialState = { articles: {}, api: { loading: "idle", error: null } };
-
+};
 export const slice = createSlice({
   name: "articles",
   initialState: initialState,
   reducers: {},
   extraReducers: {
-    [articleList.pending]: (state) => {
+    [articleList.pending]: state => {
       if (state.api.loading === "idle") {
         state.api.loading = "pending";
         state.api.error = null;
@@ -32,7 +30,7 @@ export const slice = createSlice({
     },
     [articleList.fulfilled]: (state, action) => {
       if (state.api.loading === "pending") {
-        action.payload.map((article) => {
+        action.payload.map(article => {
           state.articles[article.id] = article;
           return article;
         });
@@ -45,7 +43,7 @@ export const slice = createSlice({
         state.api.loading = "idle";
       }
     },
-    [articleRead.pending]: (state) => {
+    [articleRead.pending]: state => {
       if (state.api.loading === "idle") {
         state.api.loading = "pending";
       }
