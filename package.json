@@ -12,6 +12,7 @@
     "web:build": "./node_modules/.bin/webpack --config ./webpack.config.js --color --mode production"
   },
   "dependencies": {
+    "@modules/app-menu": "file:./modules/app-menu/",
     "@modules/articles": "file:./modules/articles/",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.3",
