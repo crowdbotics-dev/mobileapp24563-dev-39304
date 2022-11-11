@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TextInput,
-  Image,
-  FlatList,
-  Pressable
-} from "react-native";
+import { Text, StyleSheet, View, SafeAreaView, TextInput, Image, FlatList, Pressable } from "react-native";
 
 const SocialBlockedUsersScreen = params => {
   const [followers, setFollowers] = useState();
@@ -16,42 +7,26 @@ const SocialBlockedUsersScreen = params => {
   const [blockedUsers, setBlockedUsers] = useState([]);
   useEffect(() => {
     setFollowers(4513);
-    setBlockedUsers([
-      {
-        id: 1,
-        name: "John Doe",
-        profileImage: require("./assets/profile.png")
-      },
-      {
-        id: 2,
-        name: "Cody Fisher",
-        profileImage: require("./assets/profile.png")
-      },
-      {
-        id: 3,
-        name: "Jenny Wilson",
-        profileImage: require("./assets/profile.png")
-      }
-    ]);
+    setBlockedUsers([{
+      id: 1,
+      name: "John Doe",
+      profileImage: require("./assets/profile.png")
+    }, {
+      id: 2,
+      name: "Cody Fisher",
+      profileImage: require("./assets/profile.png")
+    }, {
+      id: 3,
+      name: "Jenny Wilson",
+      profileImage: require("./assets/profile.png")
+    }]);
   }, []);
-  return (
-    <SafeAreaView style={styles.container}>
+  return <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.inputContainer}>
           <Text style={styles.inputText}>Search</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={text => setUsername(text)}
-            value={username}
-            placeholder="Search Username"
-            placeholderTextColor="#9B9B9B"
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-          <Image
-            source={require("./assets/Vector.png")}
-            style={styles.searchIcon}
-          />
+          <TextInput style={styles.input} onChangeText={text => setUsername(text)} value={username} placeholder="Search Username" placeholderTextColor="#9B9B9B" autoCapitalize="none" autoCorrect={false} />
+          <Image source={require("./assets/Vector.png")} style={styles.searchIcon} />
         </View>
       </View>
       <View style={styles.follower_blocked}>
@@ -61,13 +36,10 @@ const SocialBlockedUsersScreen = params => {
       <View style={styles.frequentBar}>
         <Text style={[styles.fnt16, styles.bold, styles.grey]}>Frequently</Text>
       </View>
-      <FlatList
-        data={blockedUsers}
-        keyExtractor={(item, index) => item.id.toString()}
-        renderItem={({ item }) => <User user={item} />}
-      />
-    </SafeAreaView>
-  );
+      <FlatList data={blockedUsers} keyExtractor={(item, index) => item.id.toString()} renderItem={({
+      item
+    }) => <User user={item} />} />
+    </SafeAreaView>;
 };
 
 const styles = StyleSheet.create({
@@ -133,9 +105,10 @@ const styles = StyleSheet.create({
 });
 export default SocialBlockedUsersScreen;
 
-const User = ({ user }) => {
-  return (
-    <View style={useStyles.userContainer}>
+const User = ({
+  user
+}) => {
+  return <View style={useStyles.userContainer}>
       <View style={useStyles.userInfo}>
         <Image source={user.profileImage} style={useStyles.profileImage} />
         <Text style={useStyles.username}>{user.name}</Text>
@@ -143,8 +116,7 @@ const User = ({ user }) => {
       <Pressable style={useStyles.btnContainer}>
         <Text style={useStyles.btntext}>Unblock</Text>
       </Pressable>
-    </View>
-  );
+    </View>;
 };
 
 const useStyles = StyleSheet.create({
